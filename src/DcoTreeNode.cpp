@@ -567,7 +567,7 @@ int DcoTreeNode::boundingLoop(bool isRoot, bool rampUp) {
     double abs_gap_limit = model->dcoPar()->entry(DcoParams::optimalAbsGap);
     cutoff = CoinMin(cutoff, broker()->getIncumbentValue());
     double abs_gap = cutoff-getQuality();
-    double rel_gap = abs_gap/fabs(broker()->getIncumbentValue());
+    double rel_gap = abs_gap/fabs(CoinMin(cutoff, broker()->getIncumbentValue()));
     //std::cout << "abs " << abs_gap << " limit " << abs_gap_limit << std::endl;
     //std::cout << "rel " << rel_gap << " limit " << rel_gap_limit << std::endl;
     if (rel_gap_limit>rel_gap or abs_gap_limit>abs_gap) {
